@@ -2,7 +2,6 @@ import { useState } from "react"
 import ChildComponent from "./ChildComponent.jsx"
 
 function App() {
-  console.log("OK");
   
   const [txt, setTxt] = useState("Hello amir")
 
@@ -14,7 +13,9 @@ function App() {
     <div>
     
       <button onClick={changeTxt}>click me for edit text</button>
-      <ChildComponent title={txt} />
+      <ChildComponent title={txt}>
+        <b>heeeeeey , lok meeee </b>
+      </ChildComponent>
 
     </div>
   )
