@@ -1,14 +1,12 @@
-const ChildComponent = ({title , children}) => {
+const ChildComponent = ({name , age , job}) => {
     
     return (
         <div>
-            <h1>{title}</h1>
-            <br/>
-            {children}
-            <br/>
-            {children}
-            <br/>
-            {children}
+            <ul>
+                <li><strong>name:</strong> {name}</li>
+                <li><strong>age:</strong> {age}</li>
+                <li><strong>job:</strong> {job}</li>
+            </ul>
         </div>
     )
 }

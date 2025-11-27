@@ -1,21 +1,24 @@
-import { useState } from "react"
 import ChildComponent from "./ChildComponent.jsx"
 
 function App() {
   
-  const [txt, setTxt] = useState("Hello amir")
-
-  const changeTxt = () => {
-    setTxt("Thanke you for click amir :))")
-  }
+  const users = [
+    {name:"Ali" , age:21 , job:"js dev"},
+    {name:"amir" , age:26 , job:"and dev"},
+    {name:"hasan" , age:41 , job:"java dev"},
+    {name:"mmd" , age:26 , job:"ios dev"},
+    {name:"reza" , age:27 , job:"mac dev"},
+  ]
 
   return (
     <div>
     
-      <button onClick={changeTxt}>click me for edit text</button>
-      <ChildComponent title={txt}>
-        <b>heeeeeey , lok meeee </b>
-      </ChildComponent>
+    {users.map(user => (
+      <>
+        <ChildComponent key={user.name} name={user.name} age={user.age} job={user.job} />
+        <hr/>
+      </>
+    ))}
 
     </div>
   )
