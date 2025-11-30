@@ -16,19 +16,28 @@ function App() {
   const [initialUsers , setUsers] = useState(users) ;
 
   const handelDelet = (name) => {
-    const newUser = initialUsers.filter(user => user.name !== name)
+    // functional-update
+    setUsers((prevUser) => {
+      const newUser = prevUser.filter(user => user.name !== name)
+      return newUser
+    })
+  }
+
+  const setSearch = (char) => {
+    const newUser = initialUsers.filter(user => user.name.toLocaleLowerCase().includes(char.toLocaleLowerCase()))
     setUsers(newUser)
   }
   
   return (
     <div>
     
+      <input onInput={(e) => setSearch(e.target.value)} />
+
       {initialUsers.map(user => (
-        <>
           <ChildComponent key={user.name} {...user} handelDelet={handelDelet}/>
-          <hr />
-        </>
       ))}
+      
+      <hr />
 
     </div>
   )
