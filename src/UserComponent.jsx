@@ -1,10 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const UserComponent = () => {
 
-    console.log("UserComponent");
-
     const [age, setAge] = useState(22)
+
+    // useEffect(()=>{},[])     == 2parametr
+    useEffect(() => {
+        // Mount
+        console.log("Mount UserComponent");
+        
+        return () => {
+            // UnMount
+            console.log("UnMount UserComponent");
+        }
+    },[])
+    
+    useEffect(() => {
+        console.log(age);
+        if (age === 30) {
+            console.log("age is 30");
+        }
+    }, [age])
+    
 
     return(
         <div>
