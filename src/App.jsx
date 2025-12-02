@@ -1,13 +1,8 @@
 import { useState } from "react"
 import GusetComponent from "./GuestComponent/GuestComponent.jsx"
 import UserComponent from "./UserComponent/UserComponent.jsx";
-import "./App.css";
+import style from "./App.module.css";
 
-
-const handlStyle = {
-  display: "flex" ,
-  flexDirection: "column" ,
-}
 
 function App() {
 
@@ -16,11 +11,14 @@ function App() {
   const [isLogin , setIsLogin] = useState(false) ;
 
   return (
-    <div style={handlStyle}>
+    <div className={style.container}>
     
-      <button onClick={() => setIsLogin(!isLogin)}>
-        {isLogin ? "Logout" : "Login"}
-      </button>
+      <header className={style.header}>
+        <p className={style.desHead}>AM</p>
+        <button className={style.btnHead} onClick={() => setIsLogin(!isLogin)}>
+          {isLogin ? "Logout" : "Login"}
+        </button>
+      </header>
       
       {isLogin ? <UserComponent /> : <GusetComponent />}
 
