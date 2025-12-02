@@ -4,6 +4,11 @@ import UserComponent from "./UserComponent/UserComponent.jsx";
 import "./App.css";
 
 
+const handlStyle = {
+  display: "flex" ,
+  flexDirection: "column" ,
+}
+
 function App() {
 
   console.log("App Fn");
@@ -11,7 +16,7 @@ function App() {
   const [isLogin , setIsLogin] = useState(false) ;
 
   return (
-    <div className="container">
+    <div style={handlStyle}>
     
       <button onClick={() => setIsLogin(!isLogin)}>
         {isLogin ? "Logout" : "Login"}
