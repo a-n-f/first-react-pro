@@ -1,0 +1,46 @@
+/* استایل‌های مربوط به UserComponent */
+
+/* روت UserComponent: div بعد از دکمه Login که کلاس guestContainer ندارد */
+div > button + div:not(.guestContainer) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    background: linear-gradient(160deg, #ededed, #b8dae5);
+    width: min(500px, 90%);
+    margin: 3rem auto 0;
+    padding: 2rem 1.5rem;
+    border-radius: 2rem;
+    box-shadow: -6px 4px 20px 0px lightgray;
+}
+
+div > button + div:not(.guestContainer) > h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #153647;
+}
+
+div > button + div:not(.guestContainer) > button {
+    margin-top: 0.5rem;
+}
+
+div > button + div:not(.guestContainer) > ol {
+    margin: 0;
+    padding: 1rem 1.2rem;
+    width: 100%;
+    list-style: none;
+    background-color: snow;
+    border-radius: 1rem;
+    font-size: 0.98rem;
+}
+
+div > button + div:not(.guestContainer) > ol > li {
+    margin-bottom: 0.4rem;
+}
+
+div > button + div:not(.guestContainer) > ol > li:last-child {
+    margin-bottom: 0;
+}
+
+

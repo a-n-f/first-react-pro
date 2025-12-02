@@ -1,6 +1,7 @@
 import { useState } from "react"
-import GusetComponent from "./GusetComponent.jsx"
-import UserComponent from "./UserComponent.jsx";
+import GusetComponent from "./GuestComponent/GuestComponent.jsx"
+import UserComponent from "./UserComponent/UserComponent.jsx";
+import "./App.css";
 
 
 function App() {
@@ -10,15 +11,13 @@ function App() {
   const [isLogin , setIsLogin] = useState(false) ;
 
   return (
-    <div>
+    <div className="container">
     
       <button onClick={() => setIsLogin(!isLogin)}>
         {isLogin ? "Logout" : "Login"}
       </button>
       
       {isLogin ? <UserComponent /> : <GusetComponent />}
-
-      <hr />
 
     </div>
   )

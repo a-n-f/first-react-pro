@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import './UserComponent.css';
+
 
 const UserComponent = () => {
 
