@@ -1,3 +1,4 @@
+@import "tailwindcss";
 
 * {
   box-sizing: border-box;
@@ -8,29 +9,4 @@ body {
   margin: 0;
   padding: 0;
   background-color: snow;
-}
-
-#root {
-  width: 100%;
-}
-
-button {
-  padding: 0.6rem 1.4rem;
-  border-radius: 999px;
-  border: 1px solid #8ab6c5;
-  background: linear-gradient(135deg, #e5f3f8, #c2dfe9);
-  cursor: pointer;
-  font-weight: 500;
-  color: #1b3b4a;
-  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
-}
-
-button:hover {
-  background: linear-gradient(135deg, #d7edf6, #b5d6e4);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-button:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
