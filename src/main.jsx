@@ -13,5 +13,5 @@ createRoot(document.getElementById('root')).render(
 
 
 // git add . 
-// git commit -m "added navbar component"
+// git commit -m "TailwindInReact-342"
 // git push
