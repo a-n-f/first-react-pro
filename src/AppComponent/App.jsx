@@ -1,19 +1,86 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect , useReducer} from "react"
+
+const initialState = {
+  data: null ,
+  loading: true ,
+  error: null ,
+}
+
+const dataReducer = (state, action) => {
+  switch (action.type) {
+
+    case "FETCH-START":
+      return {loading:true , data:null , error:null} ;
+
+    case "FETCH-SUCCESS":
+      return {loading:false , data:action.payload , error:null} 
+
+    case "FETCH-ERROR":
+      return {loading:false , data:null , error:action.payload} 
+    
+    default:
+      return state
+  }
+}
+
+
+// https://jsonplaceholder.typicode.com/users
 
 const App = () => {
   
-  let inputRef = useRef(null)
+  const [state, dispatch] = useReducer(dataReducer, initialState)
 
   useEffect(() => {
-    inputRef.current.focus()
+    dispatch({type:"FETCH-START"})
+
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+
+        dispatch({type:"FETCH-SUCCESS" , payload:data})
+      })
+      .catch(
+        dispatch({type:"FETCH-ERROR" , payload:"خطا در گرفتن دیتا"})
+      )
   }, [])
   
-  return (
-    <div className={`bg-gray-500 flex-col text-white flex justify-center w-auto m-5 p-10 rounded-2xl text-center text-3xl font-bold`}>
-      <h1>Hey</h1>
-      <input ref={inputRef} className="bg-white rounded-lg max-w-[40%] mx-auto mt-10 text-gray-700 placeholder:text-gray-400" placeholder="enter lorem"/>
+
+  if (state.loading) {
+    return (
+      <div className={``}>
+        <div>
+          <strong>درحال دریافت اطلاعات</strong>
+        </div>
+      </div>
+    ) 
+  }
+
+  if (state.error) {
+    return(
+      <div className={``}>
+        <div>
+          <strong>{state.error}</strong>
+        </div>
+      </div>
+    )
+  }
+
+  return(
+    <div className="flex items-center justify-center flex-col">
+      <h1>list users</h1>
+      <div className="flex max-w-[80%] flex-wrap gap-12 mt-8 justify-center items-center">
+        {state.data.map(user => (
+          <div key={user.name} className="w-[20%]">
+            <strong>{user.name}</strong>
+            <p>{user.username}</p>
+            <span>{user.email}</span>
+          </div>
+        ))}
+      </div>
     </div>
   )
+
 }
 
 export default App
