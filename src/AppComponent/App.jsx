@@ -1,83 +1,40 @@
-import { useEffect , useReducer} from "react"
-
-const initialState = {
-  data: null ,
-  loading: true ,
-  error: null ,
-}
-
-const dataReducer = (state, action) => {
-  switch (action.type) {
-
-    case "FETCH-START":
-      return {loading:true , data:null , error:null} ;
-
-    case "FETCH-SUCCESS":
-      return {loading:false , data:action.payload , error:null} 
-
-    case "FETCH-ERROR":
-      return {loading:false , data:null , error:action.payload} 
-    
-    default:
-      return state
-  }
-}
-
+import { useState} from "react"
+import UsersComponent from "../UsersComponent/UsersComponent.jsx"
+import PostsComponent from "../PostsComponent/PostsComponent.jsx"
 
 // https://jsonplaceholder.typicode.com/users
 
 const App = () => {
   
-  const [state, dispatch] = useReducer(dataReducer, initialState)
+  const [page, setPags] = useState("users")
 
-  useEffect(() => {
-    dispatch({type:"FETCH-START"})
+  return (
+    <div className={`bg-white max-w-[50%] mx-auto my-[10%] h-[40rem] border-2 border-gray-200 rounded-2xl p-2 overflow-hidden flex flex-col`}>
 
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
+      <div className={`h-[20%] flex flex-col justify-between items-center border-b-2 border-gray-300 p-4 `}>
+        <h1 className={`font-bold text-2xl`}>React App</h1>
 
-        dispatch({type:"FETCH-SUCCESS" , payload:data})
-      })
-      .catch(
-        dispatch({type:"FETCH-ERROR" , payload:"خطا در گرفتن دیتا"})
-      )
-  }, [])
-  
-
-  if (state.loading) {
-    return (
-      <div className={``}>
-        <div>
-          <strong>درحال دریافت اطلاعات</strong>
+        <div className={`flex gap-12`}>
+          <button 
+            onClick={() => setPags("users")} 
+            className={`cursor-pointer transition duration-100 text-white text-xl py-1 px-4 text-center rounded-lg 
+            ${page === "users" ? "bg-[#a674d5]" : "bg-gray-500"}`}>
+            users
+          </button>
+          <button 
+            onClick={() => setPags("posts")} 
+            className={`cursor-pointer transition duration-100 text-white text-xl py-1 px-4 text-center rounded-lg 
+            ${page === "posts" ? "bg-[#a674d5]" : "bg-gray-500"}`}>
+            posts
+          </button>
         </div>
       </div>
-    ) 
-  }
 
-  if (state.error) {
-    return(
-      <div className={``}>
-        <div>
-          <strong>{state.error}</strong>
-        </div>
+      <div className={`h-[80%] p-4 `}>
+        {page === "users" && <UsersComponent />} 
+        {page === "posts" && <PostsComponent />}
       </div>
-    )
-  }
 
-  return(
-    <div className="flex items-center justify-center flex-col">
-      <h1>list users</h1>
-      <div className="flex max-w-[80%] flex-wrap gap-12 mt-8 justify-center items-center">
-        {state.data.map(user => (
-          <div key={user.name} className="w-[20%]">
-            <strong>{user.name}</strong>
-            <p>{user.username}</p>
-            <span>{user.email}</span>
-          </div>
-        ))}
-      </div>
     </div>
   )
 
