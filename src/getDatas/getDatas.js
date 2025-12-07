@@ -1,27 +1,48 @@
-import { useEffect, useState } from "react"
+import { useEffect, useReducer } from "react"
 
 export const useGetDatas = (url) => {
-    const [data, setData] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [err, setErr] = useState(null)
+
+    const [state, dispatch] = useReducer((state, action) => {
+        switch (action.type) {
+            case "FETCH_START":
+                return {loading:true , data:null , err:null}             
+            case "FETCH_SUCCESS":
+                return {loading:false , data:action.payload , err:null}             
+            case "FETCH_ERROR":
+                return {loading:false , data:null , err:action.payload}             
+            
+            default:
+                return state
+        }
+    }, {loading:false, data:null, err:null})
 
 
     useEffect(() => {
+        let isCancelled = false;
+
+        dispatch({type:"FETCH_START"})
         fetch(url)
-            .then(res => {
+        .then(res => {
                 if (!res.ok) throw new Error(" خطا در دریافت اطلاعات!! ")
                 return res.json()
             })
             .then(posts => {
-                setData(posts)
-                setLoading(false)
+                if (!isCancelled) {
+                    dispatch({type:"FETCH_SUCCESS" , payload:posts})
+                }
             })
             .catch(error => {
-                setErr(error)
-                setLoading(false)
+                if (!isCancelled) {
+                    dispatch({type:"FETCH_ERROR" , payload:error})
+                }
             })
+        
+        return () => {
+            isCancelled = true;
+        }
             
     }, [url])
 
-    return {data , loading , err}
+    
+    return { loading: state.loading, data: state.data, err: state.err }
 }

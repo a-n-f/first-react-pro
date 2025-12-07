@@ -1,9 +1,12 @@
 import { createRoot } from 'react-dom/client'
 import './main.css'
 import App from './AppComponent/App.jsx'
+import { BrowserRouter } from 'react-router'
 
 createRoot(document.getElementById('root')).render(
-    <App />
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
 )
 
 
@@ -13,5 +16,5 @@ createRoot(document.getElementById('root')).render(
 
 
 // git add . 
-// git commit -m "useReducer-347"
+// git commit -m "ReactRouter-349,350"
 // git push

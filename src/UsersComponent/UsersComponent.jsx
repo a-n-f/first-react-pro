@@ -18,7 +18,7 @@ const UsersComponent = () => {
     if (data) return (
         <div className={`border-2 flex flex-col gap-6 border-gray-400 overflow-y-scroll p-3 rounded-lg max-h-[480px] min-h-[480px]`}>
             {data.map(user => (
-                <div key={user.name} className={`flex border-b-2 border-b-fuchsia-200 justify-between py-4 px-3`}>
+                <div key={user.id} className={`flex border-b-2 border-b-fuchsia-200 justify-between py-4 px-3`}>
                     <div><p>{user.id}</p></div>
                     <div><strong>{user.name}</strong></div>
                     <div><a href="" className="border-b-2 border-b-blue-700">{user.email}</a></div>
@@ -37,6 +37,7 @@ const UsersComponent = () => {
         </div>
     )
 
+    return null;
 }
 
 export default UsersComponent;

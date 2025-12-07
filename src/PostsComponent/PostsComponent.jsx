@@ -4,7 +4,6 @@ import { useGetDatas } from "../getDatas/getDatas";
 const PostsComponent = () => {
     console.log("PostsComponent");
 
-    
     const {data, loading, err} = useGetDatas("https://jsonplaceholder.typicode.com/posts");
 
 
@@ -49,6 +48,7 @@ const PostsComponent = () => {
         </div>
     )
 
+    return null;
 }
 
 export default PostsComponent ;
