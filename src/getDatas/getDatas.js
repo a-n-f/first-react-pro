@@ -1,5 +1,17 @@
 import { useEffect, useReducer } from "react"
 
+const users = [
+    {id:1, name:"amir", email:"amir@gmail.com"},
+    {id:2, name:"javad", email:"javad@gmail.com"},
+    {id:3, name:"mmd", email:"mmd@gmail.com"},
+    {id:4, name:"moeen", email:"moeen@gmail.com"},
+    {id:5, name:"mohsen", email:"mohsen@gmail.com"},
+    {id:6, name:"mahdi", email:"mahdi@gmail.com"},
+    {id:7, name:"fati", email:"fati@gmail.com"},
+    {id:8, name:"mfjf", email:"mfjf@gmail.com"},
+    {id:9, name:"srto", email:"srto@gmail.com"},
+]
+
 export const useGetDatas = (url) => {
 
     const [state, dispatch] = useReducer((state, action) => {
@@ -44,5 +56,5 @@ export const useGetDatas = (url) => {
     }, [url])
 
     
-    return { loading: state.loading, data: state.data, err: state.err }
+    return { loading:state.loading, data:users , err:state.err }
 }
