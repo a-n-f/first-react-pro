@@ -27,7 +27,7 @@ const UsersComponent = () => {
             <div className="container">
                 <div className={`border-2 flex flex-col gap-6 border-gray-400 overflow-y-scroll p-3 rounded-lg max-h-[480px] min-h-[480px]`}>
                     {data.map(user => (
-                        <Link to={`user-details/${user.id}`} key={user.id} className={`flex border-b-2 border-b-fuchsia-200 justify-between py-4 px-3`}>
+                        <Link to={`user-details/${user.id}`} state={{user}} key={user.id} className={`flex border-b-2 border-b-fuchsia-200 justify-between py-4 px-3`}>
                             <div><p>{user.id}</p></div>
                             <div><strong>{user.name}</strong></div>
                             <div><p className="border-b-2 border-b-blue-700">{user.email}</p></div>
