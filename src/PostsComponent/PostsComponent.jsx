@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-import { useGetDatas } from "../getDatas/getDatas";
+import { useGetDatas } from "../getDatas/getDatas.js";
 
 const PostsComponent = () => {
     console.log("PostsComponent");

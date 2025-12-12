@@ -1,6 +1,7 @@
-import UsersComponent from "../UsersComponent/UsersComponent.jsx"
-import PostsComponent from "../PostsComponent/PostsComponent.jsx"
+import UsersComponent from "../UsersComponent/UsersComponent.jsx";
+import PostsComponent from "../PostsComponent/PostsComponent.jsx";
 import AddUserComponent from "../AddUserComponent/AddUserComponent.jsx";
+import UserDetailsComponent from "../UserDetailsComponent/UserDetailsComponent.jsx";
 import { Routes, Route, NavLink } from "react-router";
 
 // https://jsonplaceholder.typicode.com/users
@@ -34,7 +35,8 @@ const App = () => {
       <div className={`h-[80%] p-4 `}>
           <Routes>
               <Route path="/users" element={<UsersComponent />} >
-                <Route path="adduser" element={<AddUserComponent />} />
+                <Route path="add-user" element={<AddUserComponent />} />
+                <Route path="user-details/:userId" element={<UserDetailsComponent />} />
               </Route>
               <Route path="/posts" element={<PostsComponent />} />
           </Routes>
@@ -45,4 +47,4 @@ const App = () => {
 
 }
 
-export default App
+export default App ;

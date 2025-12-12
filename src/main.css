@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Shabnam";
+  src: url("../assets/font/Shabnam.ttf") format("woff");
+}
+
 * {
   box-sizing: border-box;
-  font-family: "system-ui";
+  font-family: "Shabnam";
 }
 
 body {
