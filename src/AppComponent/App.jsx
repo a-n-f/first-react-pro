@@ -2,14 +2,25 @@ import UsersComponent from "../UsersComponent/UsersComponent.jsx";
 import PostsComponent from "../PostsComponent/PostsComponent.jsx";
 import AddUserComponent from "../AddUserComponent/AddUserComponent.jsx";
 import UserDetailsComponent from "../UserDetailsComponent/UserDetailsComponent.jsx";
-import { Routes, Route, NavLink } from "react-router";
+import { Routes, Route, NavLink, useNavigate, Navigate } from "react-router";
 
 // https://jsonplaceholder.typicode.com/users
 
 const App = () => {
   
+  let goToHowPage = true ;
+
+  const navigate = useNavigate()
+
+  const handleClickToNavigate = async () => {
+    await new Promise(resolve => setTimeout(resolve , 3000)).then(console.log("handleClickToNavigate"))
+    navigate("/users" , {state: {dataApp : "userAmir" , passApp:12345}})
+  }
+  
   return (
     <div className={`bg-white max-w-[50%] mx-auto my-[10%] h-160 border-2 border-gray-200 rounded-2xl p-2 overflow-hidden flex flex-col`}>
+
+      {goToHowPage ? <Navigate to={"/posts"}/> : null }
 
       <div className={`h-[20%] flex flex-col justify-between items-center border-b-2 border-gray-300 p-4 `}>
         <h1 className={`font-bold text-2xl`}>React App</h1>
@@ -29,6 +40,9 @@ const App = () => {
             `}>
             posts
           </NavLink>
+          <button onClick={handleClickToNavigate} className="bg-[#a674d5] cursor-pointer text-white rounded-sm p-1 uppercase">
+            users by navigate
+          </button>
         </div>
       </div>
 

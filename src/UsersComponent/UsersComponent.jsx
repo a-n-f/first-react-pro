@@ -1,10 +1,15 @@
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import { useGetDatas } from "../getDatas/getDatas";
 
 
 const UsersComponent = () => {
     console.log("UsersComponent");
 
+    const locationUsers = useNavigate()
+
+    const {state} = useLocation()
+    console.log(state);
+    
     const {data, loading, err} = useGetDatas("https://jsonplaceholder.typicode.com/users");
 
     if (loading) return(
@@ -44,6 +49,9 @@ const UsersComponent = () => {
             <div className="bg-red-50 border-2 border-red-500 px-8 py-6 rounded-xl shadow-md text-center w-full">
                 <strong className="text-red-800 text-xl font-bold block mb-2">خطا!</strong>
                 <p className="text-red-600 text-base">{err.message || err}</p>
+                <button onClick={() => locationUsers(-1)} className="bg-red-950 my-12 cursor-pointer text-white rounded-sm p-1 uppercase">
+                    back to current page
+                </button>
             </div>
         </div>
     )
