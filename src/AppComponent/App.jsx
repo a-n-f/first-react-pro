@@ -1,55 +1,22 @@
-import UsersComponent from "../UsersComponent/UsersComponent.jsx";
-import PostsComponent from "../PostsComponent/PostsComponent.jsx";
-import AddUserComponent from "../AddUserComponent/AddUserComponent.jsx";
-import UserDetailsComponent from "../UserDetailsComponent/UserDetailsComponent.jsx";
-import NotFoundComponent from "../NotFoundComponent/NotFoundComponent.jsx";
-import { Routes, Route, NavLink, useNavigate, Navigate } from "react-router";
+import UsersListComponent from "../UsersListComment/UsersListComment.jsx";
 
-// https://jsonplaceholder.typicode.com/users
 
 const App = () => {
   
-  const navigate = useNavigate()
-  const handleClickToNavigate = async () => {
-    await new Promise(resolve => setTimeout(resolve , 3000)).then(console.log("handleClickToNavigate"))
-    navigate("/users" , {state: {dataApp : "userAmir" , passApp:12345}})
-  }
-  
   return (
-    <div className={`bg-white max-w-[50%] mx-auto my-[10%] h-160 border-2 border-gray-200 rounded-2xl p-2 overflow-hidden flex flex-col`}>
+    <div className={` text-white flex flex-col justify-center items-center`}>
+      
+      <header className="bg-gray-800/90 w-full flex justify-center items-center h-[5rem]">
+        <h1 className="text-3xl font-bold">
+          سامانه مدیریت کاربران
+        </h1>
+      </header>
 
-      <div className={`h-[20%] flex flex-col justify-between items-center border-b-2 border-gray-300 p-4 `}>
-        <h1 className={`font-bold text-2xl`}>React App</h1>
+      <div className="usersContainer p-6 grid bg-blue-400 w-[90%] mx-auto rounded-sm my-16 gap-5
+        grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+        
+        <UsersListComponent />
 
-        <div className={`flex gap-12`}>
-          <NavLink
-            to="/users"
-            className={({isActive}) => `cursor-pointer transition duration-100 text-white text-xl py-1 px-4 text-center rounded-lg
-            ${isActive ? "bg-[#a674d5]" : "bg-gray-500"}`}>
-            users
-          </NavLink>
-          <NavLink
-            to="/posts"
-            className={({isActive}) => `cursor-pointer transition duration-100 text-white text-xl py-1 px-4 text-center rounded-lg
-            ${isActive ? "bg-[#a674d5]" : "bg-gray-500"}`}>
-            posts
-          </NavLink>
-          <button onClick={handleClickToNavigate} className="focus:bg-[#a674d5] bg-gray-500 transition duration-200 cursor-pointer text-white rounded-sm p-1 uppercase">
-            users by navigate
-          </button>
-        </div>
-      </div>
-
-      <div className={`h-[80%] p-4 `}>
-          <Routes>
-            <Route path="/users" element={<UsersComponent />} >
-              <Route path="add-user" element={<AddUserComponent />} />
-              <Route path="user-details/:userId" element={<UserDetailsComponent />} />
-            </Route>
-            <Route path="/posts" element={<PostsComponent />} />
-            <Route path="/" element={<Navigate to={"/posts"}/>} />
-            <Route path="*" element={<NotFoundComponent />} />
-          </Routes>
       </div>
 
     </div>

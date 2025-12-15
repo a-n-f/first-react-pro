@@ -2,10 +2,13 @@ import { createRoot } from 'react-dom/client'
 import './main.css'
 import App from './AppComponent/App.jsx'
 import { BrowserRouter } from 'react-router'
+import UsersContextComponent from './UsersContextComment/UsersContextComment.jsx'
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
-        <App />
+        <UsersContextComponent>
+            <App />
+        </UsersContextComponent>
     </BrowserRouter>
 )
 
@@ -16,5 +19,5 @@ createRoot(document.getElementById('root')).render(
 
 
 // git add . 
-// git commit -m "page404-356"
+// git commit -m "contextApi-357"
 // git push
