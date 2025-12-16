@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
 let initialUsers = [
-    {name:"amir" , email:"amir@gmail.com"},
+    {name:"kave" , email:"kave@gmail.com"},
     {name:"javad" , email:"javad@gmail.com"},
     {name:"mmd" , email:"mmd@gmail.com"},
     {name:"mahdi" , email:"mahdi@gmail.com"},
