@@ -1,10 +1,10 @@
+import { permissionHOC } from "../permissionHOC/permissionHOC";
+import { USerContext } from "../UsersContextComment/UsersContextComment";
 import { useContext } from "react";
-import { USerContext } from "../UsersContextComment/UsersContextComment.jsx";
 
 const UsersListComponent = () => {
 
     const {users, removeUser} = useContext(USerContext)
-    
 
     return (
         users.map( (user) => (
@@ -23,4 +23,4 @@ const UsersListComponent = () => {
     )
 }
 
-export default UsersListComponent ;
+export default permissionHOC(UsersListComponent) ;

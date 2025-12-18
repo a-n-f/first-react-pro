@@ -18,10 +18,13 @@ export const USerContext = createContext({
     setUsers: () => {} ,
     addUsers: () => {} ,
     removeUser: () => {} ,
+    hasPermission: [] ,
+    setHasPermission: () => {} ,
 })
 
 const UsersContextComponent = ({children}) => {
 
+    const [hasPermission, setHasPermission] = useState(true)
     const [users, setUsers] = useState(initialUsers)
     const addUsers = (userAdd) => {
         setUsers([...users, userAdd])
@@ -31,7 +34,7 @@ const UsersContextComponent = ({children}) => {
     }
 
     return (
-        <USerContext.Provider value={{users, setUsers, addUsers, removeUser}}>
+        <USerContext.Provider value={{users, setUsers, addUsers, removeUser, hasPermission, setHasPermission}}>
             {children}
         </USerContext.Provider>
     )
