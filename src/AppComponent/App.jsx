@@ -1,6 +1,7 @@
 import { useState } from "react";
 import UsersListComponent from "../UsersListComment/UsersListComment.jsx";
 import AddUserComponent from "../AddUserComponent/AddUserComponent.jsx";
+import PermissionRP from "../PermissionRP/PermissionRP.jsx";
 
 
 const App = () => {
@@ -17,10 +18,15 @@ const App = () => {
       </header>
 
       <div>
-        <button onClick={() => showModalFn(true)}
-          className={` cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md shadow transition duration-200 ease-in-out my-8`}>
-          افزودن کاربر
-        </button>
+        <PermissionRP>
+          {(name) => (
+            <button onClick={() => showModalFn(true)}
+              className={` cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md shadow transition duration-200 ease-in-out my-8`}>
+              {name}
+            </button>
+          )}
+        </PermissionRP>
+
         {showModal && <AddUserComponent showModalFn={showModalFn}/>}
       </div>
 
