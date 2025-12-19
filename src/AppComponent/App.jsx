@@ -1,45 +1,45 @@
-import { useState } from "react";
-import UsersListComponent from "../UsersListComment/UsersListComment.jsx";
-import AddUserComponent from "../AddUserComponent/AddUserComponent.jsx";
-import PermissionRP from "../PermissionRP/PermissionRP.jsx";
+import { useMemo, useState } from "react";
 
 
 const App = () => {
 
-  const [showModal, showModalFn] = useState(false)
-  
+  const [number, setNumber] = useState(5)
+  const [text, setText] = useState("")
+
+  const handleCount = useMemo(() => {
+    let total = 0
+    for (let i = 0; i < 100; i++) {
+      total += i
+    }
+
+    console.log("total", total + number);
+    return total + number
+  }, [number])
+
   return (
-    <div className={` text-white flex flex-col justify-center items-center`}>
-      
-      <header className="bg-gray-800/90 w-full flex justify-center items-center h-[5rem]">
-        <h1 className="text-3xl font-bold">
-          سامانه مدیریت کاربران
-        </h1>
-      </header>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-200">
+      <div className="bg-white rounded-xl shadow-2xl p-8 flex flex-col items-center w-80">
 
-      <div>
-        <PermissionRP>
-          {(name) => (
-            <button onClick={() => showModalFn(true)}
-              className={` cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md shadow transition duration-200 ease-in-out my-8`}>
-              {name}
-            </button>
-          )}
-        </PermissionRP>
+        <div className="mb-6">
+          <span className="w-24 mx-auto h-24 flex items-center justify-center rounded-full bg-gradient-to-tr from-blue-400 to-purple-500 shadow-lg text-4xl font-bold text-white hover:scale-105 transition-transform duration-200">
+            {handleCount}
+          </span>
+          <button onClick={() => setNumber((prev) => prev + 1)} className="block text-gray-500 mt-2 text-sm hover:text-blue-500 bg-gray-200 rounded-md p-2 cursor-pointer">برای تغییر عدد اینجا کلیک کنید</button>
+        </div>
 
-        {showModal && <AddUserComponent showModalFn={showModalFn}/>}
+        <div className="w-full flex flex-col items-center">
+          <input
+            className="w-full px-4 py-2 rounded border-2 border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-400 transition-colors mb-2"
+            placeholder="متن خود را وارد کنید..."
+            value="Hello"
+            onInput={(e) => setText((prev) => prev + e.target.value)}
+          />
+          <div className="text-gray-700 font-medium mt-1">
+            <p className="cursor-default">{text}</p>
+          </div>
+        </div>
+
       </div>
-
-      <div className="usersContainer p-6 grid bg-blue-400 w-[90%] mx-auto rounded-sm my-16 gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-        <UsersListComponent />
-      </div>
-
-      <footer className="fixed bottom-0 left-0 w-full bg-gray-800/90 flex justify-center items-center py-3 shadow-lg z-40">
-        <span className="text-gray-200 text-base font-semibold">
-          © {new Date().getFullYear()} سامانه مدیریت کاربران - ساخته شده با ❤️ توسط تیم شما
-        </span>
-      </footer>
-
     </div>
   )
 
